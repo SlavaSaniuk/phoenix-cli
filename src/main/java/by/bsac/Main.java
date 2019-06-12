@@ -7,9 +7,17 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Import;
 
 @SpringBootApplication
+@EnableConfigurationProperties({
+        by.bsac.properties.PersistenceProperties.class //Persistence properties
+})
+@Import({
+        by.bsac.configuration.PersistenceGonfig.class //Persistence configuration class
+})
 public class Main implements CommandLineRunner {
 
     private static ApplicationContext application_context;
@@ -17,6 +25,9 @@ public class Main implements CommandLineRunner {
 
     public static void main(String[] args) {
 
+        //Set system property
+        //Hibernate will use slf4j logging instead jboss.logging
+        System.setProperty("org.jboss.logging.provider", "slf4j");
 
         //Create SpringApplication object
         LOGGER.info("Create application object.");
@@ -33,8 +44,9 @@ public class Main implements CommandLineRunner {
         //Create application context
         //And
         //Run application
-        LOGGER.info("Create root application context and run application.");
+        LOGGER.info("Create root application context and start beans initialization..");
         application_context = application.run(args);
+
     }
 
     @Override
