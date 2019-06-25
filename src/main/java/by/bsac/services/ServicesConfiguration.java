@@ -1,7 +1,7 @@
 package by.bsac.services;
 
-import by.bsac.services.accounting.AccountManager;
-import by.bsac.services.accounting.AccountManagerImpl;
+import by.bsac.services.accounting.UserManager;
+import by.bsac.services.accounting.UserManagerImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
@@ -17,7 +17,7 @@ public class ServicesConfiguration {
     }
 
     @Bean
-    public AccountManager createAccountManagerService() {
-        return new AccountManagerImpl();
+    public UserManager createAccountManagerService() {
+        return new UserManagerImpl();
     }
 }

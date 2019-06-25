@@ -80,7 +80,7 @@ public class PersistenceGonfig {
      * @param ds - Configured {@link DataSource}. Datasource is autowired.
      * @return - Configured {@link LocalContainerEntityManagerFactoryBean}.
      */
-    @Bean
+    @Bean("entityManagerFactory")
     @Autowired
     public LocalContainerEntityManagerFactoryBean createEntityFactoryBean(DataSource ds) {
 
@@ -112,7 +112,7 @@ public class PersistenceGonfig {
      * @param emf - Configured {@link EntityManagerFactory};
      * @return - {@link PlatformTransactionManager} bean.
      */
-    @Bean
+    @Bean("transactionManager")
     public PlatformTransactionManager createTransactionManager(EntityManagerFactory emf) {
 
         //Log

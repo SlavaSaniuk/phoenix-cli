@@ -1,7 +1,11 @@
 package by.bsac;
 
+import by.bsac.models.Account;
 import by.bsac.models.User;
-import by.bsac.services.accounting.AccountManager;
+import by.bsac.repositories.AccountRepository;
+import by.bsac.repositories.UserDao;
+import by.bsac.repositories.UserRepository;
+import by.bsac.services.accounting.UserManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +17,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Import;
+import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 
 @SpringBootApplication
 @EnableConfigurationProperties({
@@ -28,7 +33,9 @@ public class Main implements CommandLineRunner {
     private static final Logger LOGGER = LoggerFactory.getLogger(by.bsac.Main.class); //Logger
 
     @Autowired
-    AccountManager manager;
+    UserManager manager;
+
+
 
     public static void main(String[] args) {
 
@@ -59,14 +66,9 @@ public class Main implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        User u1 = new User();
-        manager.registerAccount(u1);
+        Account a = new Account();
+        this.manager.registerAccount(a);
 
-        User u2 = new User();
-        u2.setUserIdAlias("SlavaSaniuk2");
-        manager.registerAccount(u2);
 
-        manager.deleteAccount(u1);
-        manager.deleteAccount(u2);
     }
 }
