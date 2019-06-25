@@ -14,4 +14,20 @@ public class User {
 
     @Column(name = "user_id_alias", unique = true, length = 30)
     private String user_id_alias;
+
+    public int getUserId() {
+        return user_id;
+    }
+
+    public void setUserId(int user_id) {
+        this.user_id = user_id;
+    }
+
+    public String getUserIdAlias() {
+        return user_id_alias;
+    }
+
+    public void setUserIdAlias(String user_id_alias) {
+        this.user_id_alias = user_id_alias;
+    }
 }

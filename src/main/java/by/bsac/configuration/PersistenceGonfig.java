@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -28,6 +29,7 @@ import java.util.Properties;
  * Also spring framework will be used for handing database transaction. Configuration class create PlatformTransactionManager bean.
  */
 @EnableTransactionManagement
+@EnableJpaRepositories(basePackages = "by.bsac.repositories")
 public class PersistenceGonfig {
 
     //Logger
@@ -93,6 +95,7 @@ public class PersistenceGonfig {
         emf.setJpaVendorAdapter(provider);
 
         //Set packages to scan
+        emf.setPersistenceUnitName("phoenix-users");
         emf.setPackagesToScan("by.bsac.models");
 
         //Set Hibernate properties / log
